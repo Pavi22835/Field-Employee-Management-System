@@ -2,3 +2,14 @@ node_modules/
 .env
 .env.local
 .token_admin
+
+# .NET build output (Backend)
+bin/
+obj/
+*.user
+logs/
+
+# .NET local secrets / environment overrides that must never be committed
+**/appsettings.*.local.json
+**/appsettings.Production.json
+*.pfx
