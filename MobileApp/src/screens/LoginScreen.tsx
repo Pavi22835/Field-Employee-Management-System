@@ -15,7 +15,7 @@ export function LoginScreen() {
     try {
       await login(username, password);
     } catch (err: any) {
-      setError(err?.response?.data?.message ?? "Login failed. Check your credentials.");
+      setError(err?.response?.data?.message ?? err?.message ?? "Login failed. Check your credentials.");
     } finally {
       setLoading(false);
     }

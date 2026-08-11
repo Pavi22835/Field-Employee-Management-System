@@ -63,7 +63,7 @@ export function DashboardScreen() {
       {/* Today's Assignment card */}
       {todaysPrimary ? (
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Today's Assignment</Text>
+          <Text style={styles.cardTitle}>Today&apos;s Assignment</Text>
           <Text style={styles.area}>{todaysPrimary.fieldAreaName}</Text>
           <Text style={styles.meta}>{todaysPrimary.startTime} - {todaysPrimary.expectedEndTime}</Text>
           {todaysPrimary.instructions && <Text style={styles.instructions}>{todaysPrimary.instructions}</Text>}

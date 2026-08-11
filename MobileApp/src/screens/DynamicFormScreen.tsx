@@ -26,12 +26,12 @@ export function DynamicFormScreen() {
   const [form, setForm] = useState<DynamicFormResponse | null>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [photos, setPhotos] = useState<CapturedPhoto[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!assignment.dynamicFormId);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!assignment.dynamicFormId) { setLoading(false); return; }
+    if (!assignment.dynamicFormId) return;
     apiClient.get<ApiResponse<DynamicFormResponse>>(`/dynamic-forms/${assignment.dynamicFormId}`)
       .then((res) => setForm(res.data.data ?? null))
       .finally(() => setLoading(false));

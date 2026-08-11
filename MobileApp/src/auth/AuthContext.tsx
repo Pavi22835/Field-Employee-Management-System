@@ -54,6 +54,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     if (!data.data) throw new Error(data.message ?? "Login failed.");
 
+    // This app only implements the Employee field-worker experience (section 5.3) — an
+    // Admin/Supervisor/SuperAdmin account can authenticate successfully but has no
+    // employeeId, so every screen's API calls would silently 403. Reject here instead
+    // of leaving the user on a Dashboard that never loads any data.
+    if (!data.data.roles.includes("Employee")) {
+      throw new Error("This app is for field employees only. Please use the Admin Web portal.");
+    }
+
     await secureTokenStorage.setTokens(data.data.accessToken, data.data.refreshToken);
     setUser({
       userId: data.data.userId,
