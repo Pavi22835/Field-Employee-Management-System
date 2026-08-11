@@ -1,0 +1,617 @@
+2026-08-11 10:44:53.883 +05:30 [INF] Executed DbCommand (140ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 10:44:54.014 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-11 10:44:54.165 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 10:44:54.237 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 10:44:54.239 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-11 10:44:54.280 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-08-11 10:44:54.769 +05:30 [INF] Executed DbCommand (55ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 10:44:54.781 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 10:44:54.782 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 10:44:54.783 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 10:44:54.838 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE NOT (u."IsDeleted"))
+2026-08-11 10:44:54.857 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "SystemSettings" AS s
+    WHERE NOT (s."IsDeleted"))
+2026-08-11 10:44:55.001 +05:30 [INF] User profile is available. Using 'C:\Users\KARTHI\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-11 10:44:56.591 +05:30 [INF] Now listening on: http://0.0.0.0:5080
+2026-08-11 10:44:56.592 +05:30 [INF] Now listening on: https://0.0.0.0:5443
+2026-08-11 10:44:56.594 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 10:44:56.594 +05:30 [INF] Hosting environment: Development
+2026-08-11 10:44:56.594 +05:30 [INF] Content root path: D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Api
+2026-08-11 10:45:19.654 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - null null
+2026-08-11 10:45:23.309 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:45:23.354 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 10:45:23.434 +05:30 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2026-08-11 10:45:23.520 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 158.9266ms
+2026-08-11 10:45:23.520 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:45:23.523 +05:30 [INF] HTTP POST /api/auth/login responded 415 in 3742.6075 ms
+2026-08-11 10:45:23.526 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 415 null application/problem+json; charset=utf-8 3874.5587ms
+2026-08-11 10:45:23.835 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/swagger/index.html - null null
+2026-08-11 10:45:23.965 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/swagger/index.html - 200 null text/html;charset=utf-8 130.3607ms
+2026-08-11 10:46:12.993 +05:30 [INF] Request starting HTTP/1.1 GET http://ones-ministries-construction-dice.trycloudflare.com/swagger/index.html - null null
+2026-08-11 10:46:12.996 +05:30 [INF] Request finished HTTP/1.1 GET http://ones-ministries-construction-dice.trycloudflare.com/swagger/index.html - 200 null text/html;charset=utf-8 3.3403ms
+2026-08-11 10:46:52.129 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - application/json 51
+2026-08-11 10:46:52.139 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:46:52.139 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 10:46:52.631 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."AccessFailedCount", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Email", t0."IsActive", t0."IsDeleted", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt", t0."UpdatedBy", t0."Username", t0."Id0", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t0."CreatedAt0", t0."CreatedBy0", t0."DateOfJoining", t0."DeletedAt0", t0."DeletedBy0", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive0", t0."IsDeleted0", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt0", t0."UpdatedBy0", t0."UserId"
+FROM (
+    SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username", t."Id" AS "Id0", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DateOfJoining", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."UserId"
+    FROM "Users" AS u
+    LEFT JOIN (
+        SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+        FROM "Employees" AS e
+        WHERE NOT (e."IsDeleted")
+    ) AS t ON u."Id" = t."UserId"
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id" = t1."UserId"
+ORDER BY t0."Id", t0."Id0", t1."Id"
+2026-08-11 10:46:54.799 +05:30 [INF] Executed DbCommand (153ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?', @p18='?' (DbType = DateTime), @p19='?' (DbType = Guid), @p20='?' (DbType = DateTime), @p21='?' (DbType = Boolean), @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?', @p26='?' (DbType = DateTime), @p27='?' (DbType = Guid), @p28='?' (DbType = Guid), @p31='?' (DbType = Guid), @p29='?' (DbType = DateTime), @p30='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "LoginSessions" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DeviceId", "IpAddress", "IsActive", "IsDeleted", "LoginAt", "LogoutAt", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "CreatedBy", "CreatedByIp", "DeletedAt", "DeletedBy", "ExpiresAt", "IsDeleted", "ReplacedByTokenHash", "RevokedAt", "RevokedByIp", "TokenHash", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+UPDATE "Users" SET "LastLoginAt" = @p29, "UpdatedAt" = @p30
+WHERE "Id" = @p31;
+2026-08-11 10:46:54.867 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Auth.LoginResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:46:54.888 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 2748.2777ms
+2026-08-11 10:46:54.889 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:46:54.890 +05:30 [INF] HTTP POST /api/auth/login responded 200 in 2755.5500 ms
+2026-08-11 10:46:54.896 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 200 null application/json; charset=utf-8 2767.1826ms
+2026-08-11 10:48:45.430 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - application/json 51
+2026-08-11 10:48:45.445 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:48:45.445 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 10:48:45.561 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."AccessFailedCount", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Email", t0."IsActive", t0."IsDeleted", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt", t0."UpdatedBy", t0."Username", t0."Id0", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t0."CreatedAt0", t0."CreatedBy0", t0."DateOfJoining", t0."DeletedAt0", t0."DeletedBy0", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive0", t0."IsDeleted0", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt0", t0."UpdatedBy0", t0."UserId"
+FROM (
+    SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username", t."Id" AS "Id0", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DateOfJoining", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."UserId"
+    FROM "Users" AS u
+    LEFT JOIN (
+        SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+        FROM "Employees" AS e
+        WHERE NOT (e."IsDeleted")
+    ) AS t ON u."Id" = t."UserId"
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id" = t1."UserId"
+ORDER BY t0."Id", t0."Id0", t1."Id"
+2026-08-11 10:48:46.002 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?', @p18='?' (DbType = DateTime), @p19='?' (DbType = Guid), @p20='?' (DbType = DateTime), @p21='?' (DbType = Boolean), @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?', @p26='?' (DbType = DateTime), @p27='?' (DbType = Guid), @p28='?' (DbType = Guid), @p31='?' (DbType = Guid), @p29='?' (DbType = DateTime), @p30='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "LoginSessions" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DeviceId", "IpAddress", "IsActive", "IsDeleted", "LoginAt", "LogoutAt", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "CreatedBy", "CreatedByIp", "DeletedAt", "DeletedBy", "ExpiresAt", "IsDeleted", "ReplacedByTokenHash", "RevokedAt", "RevokedByIp", "TokenHash", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+UPDATE "Users" SET "LastLoginAt" = @p29, "UpdatedAt" = @p30
+WHERE "Id" = @p31;
+2026-08-11 10:48:46.006 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Auth.LoginResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:48:46.007 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 561.7324ms
+2026-08-11 10:48:46.007 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:48:46.007 +05:30 [INF] HTTP POST /api/auth/login responded 200 in 576.2780 ms
+2026-08-11 10:48:46.008 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 200 null application/json; charset=utf-8 577.6432ms
+2026-08-11 10:48:46.463 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/api/forms - null null
+2026-08-11 10:48:46.527 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2026-08-11 10:48:46.588 +05:30 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-08-11 10:48:46.588 +05:30 [INF] HTTP GET /api/forms responded 404 in 123.7244 ms
+2026-08-11 10:48:46.588 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/api/forms - 404 0 null 124.6451ms
+2026-08-11 10:48:46.589 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5080/api/forms, Response status code: 404
+2026-08-11 10:48:46.922 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/api/dynamic-forms - null null
+2026-08-11 10:48:46.923 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2026-08-11 10:48:46.923 +05:30 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-08-11 10:48:46.933 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-11 10:48:46.945 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-11 10:48:46.945 +05:30 [INF] HTTP GET /api/dynamic-forms responded 401 in 22.4464 ms
+2026-08-11 10:48:46.946 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/api/dynamic-forms - 401 0 null 23.5387ms
+2026-08-11 10:49:00.852 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - application/json 51
+2026-08-11 10:49:00.853 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:49:00.853 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 10:49:00.864 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."AccessFailedCount", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Email", t0."IsActive", t0."IsDeleted", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt", t0."UpdatedBy", t0."Username", t0."Id0", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t0."CreatedAt0", t0."CreatedBy0", t0."DateOfJoining", t0."DeletedAt0", t0."DeletedBy0", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive0", t0."IsDeleted0", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt0", t0."UpdatedBy0", t0."UserId"
+FROM (
+    SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username", t."Id" AS "Id0", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DateOfJoining", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."UserId"
+    FROM "Users" AS u
+    LEFT JOIN (
+        SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+        FROM "Employees" AS e
+        WHERE NOT (e."IsDeleted")
+    ) AS t ON u."Id" = t."UserId"
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id" = t1."UserId"
+ORDER BY t0."Id", t0."Id0", t1."Id"
+2026-08-11 10:49:01.373 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?', @p18='?' (DbType = DateTime), @p19='?' (DbType = Guid), @p20='?' (DbType = DateTime), @p21='?' (DbType = Boolean), @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?', @p26='?' (DbType = DateTime), @p27='?' (DbType = Guid), @p28='?' (DbType = Guid), @p31='?' (DbType = Guid), @p29='?' (DbType = DateTime), @p30='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "LoginSessions" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DeviceId", "IpAddress", "IsActive", "IsDeleted", "LoginAt", "LogoutAt", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "CreatedBy", "CreatedByIp", "DeletedAt", "DeletedBy", "ExpiresAt", "IsDeleted", "ReplacedByTokenHash", "RevokedAt", "RevokedByIp", "TokenHash", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+UPDATE "Users" SET "LastLoginAt" = @p29, "UpdatedAt" = @p30
+WHERE "Id" = @p31;
+2026-08-11 10:49:01.374 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Auth.LoginResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:01.375 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 521.0945ms
+2026-08-11 10:49:01.375 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:49:01.375 +05:30 [INF] HTTP POST /api/auth/login responded 200 in 522.5700 ms
+2026-08-11 10:49:01.375 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 200 null application/json; charset=utf-8 523.1267ms
+2026-08-11 10:49:11.271 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - application/json 51
+2026-08-11 10:49:11.272 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:49:11.272 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 10:49:11.277 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."AccessFailedCount", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Email", t0."IsActive", t0."IsDeleted", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt", t0."UpdatedBy", t0."Username", t0."Id0", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t0."CreatedAt0", t0."CreatedBy0", t0."DateOfJoining", t0."DeletedAt0", t0."DeletedBy0", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive0", t0."IsDeleted0", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt0", t0."UpdatedBy0", t0."UserId"
+FROM (
+    SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username", t."Id" AS "Id0", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DateOfJoining", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."UserId"
+    FROM "Users" AS u
+    LEFT JOIN (
+        SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+        FROM "Employees" AS e
+        WHERE NOT (e."IsDeleted")
+    ) AS t ON u."Id" = t."UserId"
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id" = t1."UserId"
+ORDER BY t0."Id", t0."Id0", t1."Id"
+2026-08-11 10:49:11.727 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?', @p18='?' (DbType = DateTime), @p19='?' (DbType = Guid), @p20='?' (DbType = DateTime), @p21='?' (DbType = Boolean), @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?', @p26='?' (DbType = DateTime), @p27='?' (DbType = Guid), @p28='?' (DbType = Guid), @p31='?' (DbType = Guid), @p29='?' (DbType = DateTime), @p30='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "LoginSessions" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DeviceId", "IpAddress", "IsActive", "IsDeleted", "LoginAt", "LogoutAt", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "CreatedBy", "CreatedByIp", "DeletedAt", "DeletedBy", "ExpiresAt", "IsDeleted", "ReplacedByTokenHash", "RevokedAt", "RevokedByIp", "TokenHash", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+UPDATE "Users" SET "LastLoginAt" = @p29, "UpdatedAt" = @p30
+WHERE "Id" = @p31;
+2026-08-11 10:49:11.729 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Auth.LoginResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:11.729 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 457.0652ms
+2026-08-11 10:49:11.729 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 10:49:11.729 +05:30 [INF] HTTP POST /api/auth/login responded 200 in 458.1962 ms
+2026-08-11 10:49:11.730 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 200 null application/json; charset=utf-8 459.1802ms
+2026-08-11 10:49:13.025 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/api/dynamic-forms - null null
+2026-08-11 10:49:13.235 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.DynamicFormsController.GetList (FEMS.Api)'
+2026-08-11 10:49:13.243 +05:30 [INF] Route matched with {action = "GetList", controller = "DynamicForms"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Common.Models.PagedResult`1[FEMS.Application.DynamicForms.DynamicFormResponse]]]] GetList(Int32, Int32, System.Nullable`1[System.Boolean], System.Threading.CancellationToken) on controller FEMS.Api.Controllers.DynamicFormsController (FEMS.Api).
+2026-08-11 10:49:13.559 +05:30 [INF] Executed DbCommand (189ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "DynamicForms" AS d
+WHERE NOT (d."IsDeleted") AND NOT (d."IsDeleted") AND d."IsActive"
+2026-08-11 10:49:13.670 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."CreatedAt", t."CreatedBy", t."DeletedAt", t."DeletedBy", t."Description", t."IsActive", t."IsDeleted", t."Name", t."UpdatedAt", t."UpdatedBy", t."Version", t0."Id", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."DisplayOrder", t0."DynamicFormId", t0."FieldType", t0."IsDeleted", t0."IsRequired", t0."Label", t0."OptionsJson", t0."UpdatedAt", t0."UpdatedBy", t0."ValidationRulesJson"
+FROM (
+    SELECT d."Id", d."CreatedAt", d."CreatedBy", d."DeletedAt", d."DeletedBy", d."Description", d."IsActive", d."IsDeleted", d."Name", d."UpdatedAt", d."UpdatedBy", d."Version"
+    FROM "DynamicForms" AS d
+    WHERE NOT (d."IsDeleted") AND NOT (d."IsDeleted") AND d."IsActive"
+    ORDER BY d."Name"
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN (
+    SELECT f."Id", f."CreatedAt", f."CreatedBy", f."DeletedAt", f."DeletedBy", f."DisplayOrder", f."DynamicFormId", f."FieldType", f."IsDeleted", f."IsRequired", f."Label", f."OptionsJson", f."UpdatedAt", f."UpdatedBy", f."ValidationRulesJson"
+    FROM "FormFields" AS f
+    WHERE NOT (f."IsDeleted")
+) AS t0 ON t."Id" = t0."DynamicFormId"
+ORDER BY t."Name", t."Id"
+2026-08-11 10:49:13.820 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Common.Models.PagedResult`1[[FEMS.Application.DynamicForms.DynamicFormResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:13.839 +05:30 [INF] Executed action FEMS.Api.Controllers.DynamicFormsController.GetList (FEMS.Api) in 596.0944ms
+2026-08-11 10:49:13.839 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.DynamicFormsController.GetList (FEMS.Api)'
+2026-08-11 10:49:13.840 +05:30 [INF] HTTP GET /api/dynamic-forms responded 200 in 813.2103 ms
+2026-08-11 10:49:13.840 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/api/dynamic-forms - 200 null application/json; charset=utf-8 814.5312ms
+2026-08-11 10:49:14.179 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/api/field-areas - null null
+2026-08-11 10:49:14.184 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.FieldAreasController.GetList (FEMS.Api)'
+2026-08-11 10:49:14.191 +05:30 [INF] Route matched with {action = "GetList", controller = "FieldAreas"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Common.Models.PagedResult`1[FEMS.Application.FieldAreas.FieldAreaResponse]]]] GetList(Int32, Int32, System.Nullable`1[System.Boolean], System.Threading.CancellationToken) on controller FEMS.Api.Controllers.FieldAreasController (FEMS.Api).
+2026-08-11 10:49:14.229 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "FieldAreas" AS f
+WHERE NOT (f."IsDeleted") AND NOT (f."IsDeleted")
+2026-08-11 10:49:14.291 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Address", t."CreatedAt", t."CreatedBy", t."DeletedAt", t."DeletedBy", t."Description", t."EnforcementMode", t."IsActive", t."IsDeleted", t."Latitude", t."Longitude", t."Name", t."RadiusMeters", t."UpdatedAt", t."UpdatedBy", t0."Id", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."DynamicFormId", t0."EmployeeId", t0."ExpectedEndTime", t0."FieldAreaId", t0."Instructions", t0."IsDeleted", t0."Priority", t0."RequiredInformation", t0."StartTime", t0."Status", t0."UpdatedAt", t0."UpdatedBy", t0."VisitDate"
+FROM (
+    SELECT f."Id", f."Address", f."CreatedAt", f."CreatedBy", f."DeletedAt", f."DeletedBy", f."Description", f."EnforcementMode", f."IsActive", f."IsDeleted", f."Latitude", f."Longitude", f."Name", f."RadiusMeters", f."UpdatedAt", f."UpdatedBy"
+    FROM "FieldAreas" AS f
+    WHERE NOT (f."IsDeleted") AND NOT (f."IsDeleted")
+    ORDER BY f."Name"
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN (
+    SELECT f0."Id", f0."CreatedAt", f0."CreatedBy", f0."DeletedAt", f0."DeletedBy", f0."DynamicFormId", f0."EmployeeId", f0."ExpectedEndTime", f0."FieldAreaId", f0."Instructions", f0."IsDeleted", f0."Priority", f0."RequiredInformation", f0."StartTime", f0."Status", f0."UpdatedAt", f0."UpdatedBy", f0."VisitDate"
+    FROM "FieldAssignments" AS f0
+    WHERE NOT (f0."IsDeleted")
+) AS t0 ON t."Id" = t0."FieldAreaId"
+ORDER BY t."Name", t."Id"
+2026-08-11 10:49:14.436 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Common.Models.PagedResult`1[[FEMS.Application.FieldAreas.FieldAreaResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:14.453 +05:30 [INF] Executed action FEMS.Api.Controllers.FieldAreasController.GetList (FEMS.Api) in 262.337ms
+2026-08-11 10:49:14.454 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.FieldAreasController.GetList (FEMS.Api)'
+2026-08-11 10:49:14.454 +05:30 [INF] HTTP GET /api/field-areas responded 200 in 274.1816 ms
+2026-08-11 10:49:14.454 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/api/field-areas - 200 null application/json; charset=utf-8 274.7506ms
+2026-08-11 10:49:27.034 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/employees - application/json 374
+2026-08-11 10:49:27.038 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.EmployeesController.Create (FEMS.Api)'
+2026-08-11 10:49:27.042 +05:30 [INF] Route matched with {action = "Create", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Employees.EmployeeResponse]]] Create(FEMS.Application.Employees.CreateEmployeeRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.EmployeesController (FEMS.Api).
+2026-08-11 10:49:27.079 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0)
+2026-08-11 10:49:27.083 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_EmployeeCode_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Employees" AS e
+    WHERE NOT (e."IsDeleted") AND e."EmployeeCode" = @__request_EmployeeCode_0)
+2026-08-11 10:49:27.091 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Role_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+FROM "Roles" AS r
+WHERE NOT (r."IsDeleted") AND r."Name" = @__request_Role_0
+LIMIT 1
+2026-08-11 10:49:27.550 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Boolean), @p13='?' (DbType = DateTime), @p14='?', @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Id", "AccessFailedCount", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "Email", "IsActive", "IsDeleted", "IsLockedOut", "LastLoginAt", "LockoutEnd", "MustChangePassword", "PasswordChangedAt", "PasswordHash", "UpdatedAt", "UpdatedBy", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+2026-08-11 10:49:27.639 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Date), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = Boolean), @p12='?', @p13='?', @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Guid), @p19='?' (DbType = DateTime), @p20='?' (DbType = Guid), @p21='?' (DbType = DateTime), @p22='?' (DbType = Guid), @p23='?' (DbType = Boolean), @p24='?' (DbType = Guid), @p25='?' (DbType = DateTime), @p26='?' (DbType = Guid), @p27='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Employees" ("Id", "CreatedAt", "CreatedBy", "DateOfJoining", "DeletedAt", "DeletedBy", "Department", "Designation", "EmployeeCode", "FirstName", "IsActive", "IsDeleted", "LastName", "PhoneNumber", "SupervisorId", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+INSERT INTO "UserRoles" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "IsDeleted", "RoleId", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);
+2026-08-11 10:49:27.672 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-08-11 10:49:27.725 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."CreatedAt", t0."CreatedBy", t0."DateOfJoining", t0."DeletedAt", t0."DeletedBy", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive", t0."IsDeleted", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt", t0."UpdatedBy", t0."UserId", t0."Id0", t0."AccessFailedCount", t0."CreatedAt0", t0."CreatedBy0", t0."DeletedAt0", t0."DeletedBy0", t0."Email", t0."IsActive0", t0."IsDeleted0", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt0", t0."UpdatedBy0", t0."Username", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t3."Id", t3."AndroidId", t3."AppInstallationId", t3."AppVersion", t3."AssignedEmployeeId", t3."CreatedAt", t3."CreatedBy", t3."DeletedAt", t3."DeletedBy", t3."DeviceManagementId", t3."IsDeleted", t3."LastHeartbeatAt", t3."LastKnownIp", t3."Manufacturer", t3."Model", t3."OsVersion", t3."PushToken", t3."RegisteredAt", t3."Status", t3."UpdatedAt", t3."UpdatedBy"
+FROM (
+    SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId", t."Id" AS "Id0", t."AccessFailedCount", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Email", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."IsLockedOut", t."LastLoginAt", t."LockoutEnd", t."MustChangePassword", t."PasswordChangedAt", t."PasswordHash", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."Username"
+    FROM "Employees" AS e
+    INNER JOIN (
+        SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username"
+        FROM "Users" AS u
+        WHERE NOT (u."IsDeleted")
+    ) AS t ON e."UserId" = t."Id"
+    WHERE NOT (e."IsDeleted") AND e."Id" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id0" = t1."UserId"
+LEFT JOIN (
+    SELECT d."Id", d."AndroidId", d."AppInstallationId", d."AppVersion", d."AssignedEmployeeId", d."CreatedAt", d."CreatedBy", d."DeletedAt", d."DeletedBy", d."DeviceManagementId", d."IsDeleted", d."LastHeartbeatAt", d."LastKnownIp", d."Manufacturer", d."Model", d."OsVersion", d."PushToken", d."RegisteredAt", d."Status", d."UpdatedAt", d."UpdatedBy"
+    FROM "Devices" AS d
+    WHERE NOT (d."IsDeleted")
+) AS t3 ON t0."Id" = t3."AssignedEmployeeId"
+ORDER BY t0."Id", t0."Id0", t1."Id", t1."Id0"
+2026-08-11 10:49:27.731 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Employees.EmployeeResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:27.770 +05:30 [INF] Executed action FEMS.Api.Controllers.EmployeesController.Create (FEMS.Api) in 727.888ms
+2026-08-11 10:49:27.770 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.EmployeesController.Create (FEMS.Api)'
+2026-08-11 10:49:27.770 +05:30 [INF] HTTP POST /api/employees responded 201 in 735.8579 ms
+2026-08-11 10:49:27.770 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/employees - 201 null application/json; charset=utf-8 736.3655ms
+2026-08-11 10:49:39.743 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/field-assignments - application/json 404
+2026-08-11 10:49:39.744 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.FieldAssignmentsController.Create (FEMS.Api)'
+2026-08-11 10:49:39.750 +05:30 [INF] Route matched with {action = "Create", controller = "FieldAssignments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.FieldAssignments.FieldAssignmentResponse]]] Create(FEMS.Application.FieldAssignments.CreateFieldAssignmentRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.FieldAssignmentsController (FEMS.Api).
+2026-08-11 10:49:46.308 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_EmployeeId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Employees" AS e
+    WHERE NOT (e."IsDeleted") AND e."Id" = @__request_EmployeeId_0 AND NOT (e."IsDeleted"))
+2026-08-11 10:49:46.312 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__request_FieldAreaId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "FieldAreas" AS f
+    WHERE NOT (f."IsDeleted") AND f."Id" = @__request_FieldAreaId_0 AND NOT (f."IsDeleted"))
+2026-08-11 10:49:46.365 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?' (DbType = Guid), @p7='?' (DbType = Time), @p8='?' (DbType = Guid), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = Int32), @p12='?', @p13='?' (DbType = Time), @p14='?', @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FieldAssignments" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DynamicFormId", "EmployeeId", "ExpectedEndTime", "FieldAreaId", "Instructions", "IsDeleted", "Priority", "RequiredInformation", "StartTime", "Status", "UpdatedAt", "UpdatedBy", "VisitDate")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);
+2026-08-11 10:49:46.410 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__assignment_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."CreatedAt", f."CreatedBy", f."DeletedAt", f."DeletedBy", f."DynamicFormId", f."EmployeeId", f."ExpectedEndTime", f."FieldAreaId", f."Instructions", f."IsDeleted", f."Priority", f."RequiredInformation", f."StartTime", f."Status", f."UpdatedAt", f."UpdatedBy", f."VisitDate", t."Id", t."CreatedAt", t."CreatedBy", t."DateOfJoining", t."DeletedAt", t."DeletedBy", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive", t."IsDeleted", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt", t."UpdatedBy", t."UserId", t0."Id", t0."Address", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Description", t0."EnforcementMode", t0."IsActive", t0."IsDeleted", t0."Latitude", t0."Longitude", t0."Name", t0."RadiusMeters", t0."UpdatedAt", t0."UpdatedBy"
+FROM "FieldAssignments" AS f
+INNER JOIN (
+    SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+    FROM "Employees" AS e
+    WHERE NOT (e."IsDeleted")
+) AS t ON f."EmployeeId" = t."Id"
+INNER JOIN (
+    SELECT f0."Id", f0."Address", f0."CreatedAt", f0."CreatedBy", f0."DeletedAt", f0."DeletedBy", f0."Description", f0."EnforcementMode", f0."IsActive", f0."IsDeleted", f0."Latitude", f0."Longitude", f0."Name", f0."RadiusMeters", f0."UpdatedAt", f0."UpdatedBy"
+    FROM "FieldAreas" AS f0
+    WHERE NOT (f0."IsDeleted")
+) AS t0 ON f."FieldAreaId" = t0."Id"
+WHERE NOT (f."IsDeleted") AND f."Id" = @__assignment_Id_0
+LIMIT 1
+2026-08-11 10:49:46.430 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT s."Id", s."CreatedAt", s."CreatedBy", s."DefaultGeofenceRadiusMeters", s."DeletedAt", s."DeletedBy", s."DeviceReplacementRequiresApproval", s."HeartbeatIntervalMinutes", s."IsDeleted", s."LocationTrackingMode", s."LockoutMinutes", s."MaxFailedLoginAttempts", s."MinimumSupportedAppVersion", s."NotifyAdminsOnDeviceNonCompliance", s."NotifyAdminsOnUnregisteredDeviceAttempt", s."NotifyEmployeeOnNewAssignment", s."PeriodicTrackingIntervalSeconds", s."SessionTimeoutMinutes", s."UpdatedAt", s."UpdatedBy"
+FROM "SystemSettings" AS s
+WHERE NOT (s."IsDeleted")
+LIMIT 1
+2026-08-11 10:49:46.494 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__assignment_EmployeeId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+FROM "Employees" AS e
+WHERE NOT (e."IsDeleted") AND e."Id" = @__assignment_EmployeeId_0
+LIMIT 1
+2026-08-11 10:49:46.642 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Boolean), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTime), @p11='?' (DbType = Guid), @p12='?' (DbType = DateTime), @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Notifications" ("Id", "Body", "Channel", "CreatedAt", "CreatedBy", "DataJson", "DeletedAt", "DeletedBy", "IsDeleted", "IsRead", "ReadAt", "RecipientUserId", "SentAt", "Title", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+2026-08-11 10:49:46.669 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__employee_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."AndroidId", d."AppInstallationId", d."AppVersion", d."AssignedEmployeeId", d."CreatedAt", d."CreatedBy", d."DeletedAt", d."DeletedBy", d."DeviceManagementId", d."IsDeleted", d."LastHeartbeatAt", d."LastKnownIp", d."Manufacturer", d."Model", d."OsVersion", d."PushToken", d."RegisteredAt", d."Status", d."UpdatedAt", d."UpdatedBy"
+FROM "Devices" AS d
+WHERE NOT (d."IsDeleted") AND d."AssignedEmployeeId" = @__employee_Id_0 AND NOT (d."IsDeleted") AND d."PushToken" IS NOT NULL
+ORDER BY d."RegisteredAt" DESC
+LIMIT 1
+2026-08-11 10:49:46.671 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.FieldAssignments.FieldAssignmentResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 10:49:46.684 +05:30 [INF] Executed action FEMS.Api.Controllers.FieldAssignmentsController.Create (FEMS.Api) in 6933.8955ms
+2026-08-11 10:49:46.685 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.FieldAssignmentsController.Create (FEMS.Api)'
+2026-08-11 10:49:46.685 +05:30 [INF] HTTP POST /api/field-assignments responded 200 in 6941.4273 ms
+2026-08-11 10:49:46.685 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/field-assignments - 200 null application/json; charset=utf-8 6942.0849ms
+2026-08-11 10:52:38.372 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/swagger/index.html - null null
+2026-08-11 10:52:38.416 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/swagger/index.html - 200 null text/html;charset=utf-8 43.7328ms
+2026-08-11 11:58:25.649 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/swagger/index.html - null null
+2026-08-11 11:58:25.985 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/swagger/index.html - 200 null text/html;charset=utf-8 382.0774ms
+2026-08-11 11:58:26.918 +05:30 [INF] Request starting HTTP/1.1 GET http://ones-ministries-construction-dice.trycloudflare.com/swagger/index.html - null null
+2026-08-11 11:58:26.936 +05:30 [INF] Request finished HTTP/1.1 GET http://ones-ministries-construction-dice.trycloudflare.com/swagger/index.html - 200 null text/html;charset=utf-8 64.377ms
+2026-08-11 11:58:27.599 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - application/json 244
+2026-08-11 11:58:28.740 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:28 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-11 11:58:29.054 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:28 AM'.
+2026-08-11 11:58:29.174 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2026-08-11 11:58:29.196 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-11 11:58:29.204 +05:30 [INF] HTTP PUT /api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 responded 401 in 1424.9281 ms
+2026-08-11 11:58:29.215 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - 401 0 null 1615.867ms
+2026-08-11 11:58:39.151 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - application/json 201
+2026-08-11 11:58:39.153 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:39 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-11 11:58:39.154 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:39 AM'.
+2026-08-11 11:58:39.155 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2026-08-11 11:58:39.155 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-11 11:58:39.156 +05:30 [INF] HTTP PUT /api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 responded 401 in 3.9091 ms
+2026-08-11 11:58:39.253 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - 401 0 null 4.4933ms
+2026-08-11 11:58:50.093 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - application/json 201
+2026-08-11 11:58:50.096 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:50 AM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-11 11:58:50.098 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '8/11/2026 5:34:11 AM', Current time (UTC): '8/11/2026 6:28:50 AM'.
+2026-08-11 11:58:50.098 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2026-08-11 11:58:50.098 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-11 11:58:50.099 +05:30 [INF] HTTP PUT /api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 responded 401 in 5.1241 ms
+2026-08-11 11:58:50.107 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - 401 0 null 13.7411ms
+2026-08-11 11:58:57.850 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/auth/login - application/json 51
+2026-08-11 11:58:57.897 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 11:58:57.962 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.Auth.LoginResponse]]] Login(FEMS.Application.Auth.LoginRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.AuthController (FEMS.Api).
+2026-08-11 11:59:00.095 +05:30 [INF] Executed DbCommand (310ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t0."Id", t0."AccessFailedCount", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."Email", t0."IsActive", t0."IsDeleted", t0."IsLockedOut", t0."LastLoginAt", t0."LockoutEnd", t0."MustChangePassword", t0."PasswordChangedAt", t0."PasswordHash", t0."UpdatedAt", t0."UpdatedBy", t0."Username", t0."Id0", t1."Id", t1."CreatedAt", t1."CreatedBy", t1."DeletedAt", t1."DeletedBy", t1."IsDeleted", t1."RoleId", t1."UpdatedAt", t1."UpdatedBy", t1."UserId", t1."Id0", t1."CreatedAt0", t1."CreatedBy0", t1."DeletedAt0", t1."DeletedBy0", t1."Description", t1."IsDeleted0", t1."IsSystemRole", t1."Name", t1."UpdatedAt0", t1."UpdatedBy0", t0."CreatedAt0", t0."CreatedBy0", t0."DateOfJoining", t0."DeletedAt0", t0."DeletedBy0", t0."Department", t0."Designation", t0."EmployeeCode", t0."FirstName", t0."IsActive0", t0."IsDeleted0", t0."LastName", t0."PhoneNumber", t0."SupervisorId", t0."UpdatedAt0", t0."UpdatedBy0", t0."UserId"
+FROM (
+    SELECT u."Id", u."AccessFailedCount", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."DeletedBy", u."Email", u."IsActive", u."IsDeleted", u."IsLockedOut", u."LastLoginAt", u."LockoutEnd", u."MustChangePassword", u."PasswordChangedAt", u."PasswordHash", u."UpdatedAt", u."UpdatedBy", u."Username", t."Id" AS "Id0", t."CreatedAt" AS "CreatedAt0", t."CreatedBy" AS "CreatedBy0", t."DateOfJoining", t."DeletedAt" AS "DeletedAt0", t."DeletedBy" AS "DeletedBy0", t."Department", t."Designation", t."EmployeeCode", t."FirstName", t."IsActive" AS "IsActive0", t."IsDeleted" AS "IsDeleted0", t."LastName", t."PhoneNumber", t."SupervisorId", t."UpdatedAt" AS "UpdatedAt0", t."UpdatedBy" AS "UpdatedBy0", t."UserId"
+    FROM "Users" AS u
+    LEFT JOIN (
+        SELECT e."Id", e."CreatedAt", e."CreatedBy", e."DateOfJoining", e."DeletedAt", e."DeletedBy", e."Department", e."Designation", e."EmployeeCode", e."FirstName", e."IsActive", e."IsDeleted", e."LastName", e."PhoneNumber", e."SupervisorId", e."UpdatedAt", e."UpdatedBy", e."UserId"
+        FROM "Employees" AS e
+        WHERE NOT (e."IsDeleted")
+    ) AS t ON u."Id" = t."UserId"
+    WHERE NOT (u."IsDeleted") AND u."Username" = @__request_Username_0
+    LIMIT 1
+) AS t0
+LEFT JOIN (
+    SELECT u0."Id", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."DeletedBy", u0."IsDeleted", u0."RoleId", u0."UpdatedAt", u0."UpdatedBy", u0."UserId", t2."Id" AS "Id0", t2."CreatedAt" AS "CreatedAt0", t2."CreatedBy" AS "CreatedBy0", t2."DeletedAt" AS "DeletedAt0", t2."DeletedBy" AS "DeletedBy0", t2."Description", t2."IsDeleted" AS "IsDeleted0", t2."IsSystemRole", t2."Name", t2."UpdatedAt" AS "UpdatedAt0", t2."UpdatedBy" AS "UpdatedBy0"
+    FROM "UserRoles" AS u0
+    INNER JOIN (
+        SELECT r."Id", r."CreatedAt", r."CreatedBy", r."DeletedAt", r."DeletedBy", r."Description", r."IsDeleted", r."IsSystemRole", r."Name", r."UpdatedAt", r."UpdatedBy"
+        FROM "Roles" AS r
+        WHERE NOT (r."IsDeleted")
+    ) AS t2 ON u0."RoleId" = t2."Id"
+    WHERE NOT (u0."IsDeleted")
+) AS t1 ON t0."Id" = t1."UserId"
+ORDER BY t0."Id", t0."Id0", t1."Id"
+2026-08-11 11:59:01.175 +05:30 [INF] Executed DbCommand (118ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?' (DbType = DateTime), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid), @p13='?' (DbType = Guid), @p14='?' (DbType = Guid), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?', @p18='?' (DbType = DateTime), @p19='?' (DbType = Guid), @p20='?' (DbType = DateTime), @p21='?' (DbType = Boolean), @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?', @p26='?' (DbType = DateTime), @p27='?' (DbType = Guid), @p28='?' (DbType = Guid), @p31='?' (DbType = Guid), @p29='?' (DbType = DateTime), @p30='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "LoginSessions" ("Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "DeviceId", "IpAddress", "IsActive", "IsDeleted", "LoginAt", "LogoutAt", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "CreatedBy", "CreatedByIp", "DeletedAt", "DeletedBy", "ExpiresAt", "IsDeleted", "ReplacedByTokenHash", "RevokedAt", "RevokedByIp", "TokenHash", "UpdatedAt", "UpdatedBy", "UserId")
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+UPDATE "Users" SET "LastLoginAt" = @p29, "UpdatedAt" = @p30
+WHERE "Id" = @p31;
+2026-08-11 11:59:01.202 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.Auth.LoginResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 11:59:01.207 +05:30 [INF] Executed action FEMS.Api.Controllers.AuthController.Login (FEMS.Api) in 3244.6028ms
+2026-08-11 11:59:01.215 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.AuthController.Login (FEMS.Api)'
+2026-08-11 11:59:01.215 +05:30 [INF] HTTP POST /api/auth/login responded 200 in 3341.0051 ms
+2026-08-11 11:59:01.234 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/auth/login - 200 null application/json; charset=utf-8 3383.237ms
+2026-08-11 11:59:01.925 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - application/json 201
+2026-08-11 11:59:02.054 +05:30 [INF] Executing endpoint 'FEMS.Api.Controllers.FieldAreasController.Update (FEMS.Api)'
+2026-08-11 11:59:02.718 +05:30 [INF] Route matched with {action = "Update", controller = "FieldAreas"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[FEMS.Application.Common.Models.ApiResponse`1[FEMS.Application.FieldAreas.FieldAreaResponse]]] Update(System.Guid, FEMS.Application.FieldAreas.UpdateFieldAreaRequest, System.Threading.CancellationToken) on controller FEMS.Api.Controllers.FieldAreasController (FEMS.Api).
+2026-08-11 11:59:03.798 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT f."Id", f."Address", f."CreatedAt", f."CreatedBy", f."DeletedAt", f."DeletedBy", f."Description", f."EnforcementMode", f."IsActive", f."IsDeleted", f."Latitude", f."Longitude", f."Name", f."RadiusMeters", f."UpdatedAt", f."UpdatedBy"
+FROM "FieldAreas" AS f
+WHERE NOT (f."IsDeleted") AND f."Id" = @__id_0 AND NOT (f."IsDeleted")
+LIMIT 1
+2026-08-11 11:59:03.996 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "FieldAreas" SET "EnforcementMode" = @p0, "UpdatedAt" = @p1, "UpdatedBy" = @p2
+WHERE "Id" = @p3;
+2026-08-11 11:59:04.221 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Address", t."CreatedAt", t."CreatedBy", t."DeletedAt", t."DeletedBy", t."Description", t."EnforcementMode", t."IsActive", t."IsDeleted", t."Latitude", t."Longitude", t."Name", t."RadiusMeters", t."UpdatedAt", t."UpdatedBy", t0."Id", t0."CreatedAt", t0."CreatedBy", t0."DeletedAt", t0."DeletedBy", t0."DynamicFormId", t0."EmployeeId", t0."ExpectedEndTime", t0."FieldAreaId", t0."Instructions", t0."IsDeleted", t0."Priority", t0."RequiredInformation", t0."StartTime", t0."Status", t0."UpdatedAt", t0."UpdatedBy", t0."VisitDate"
+FROM (
+    SELECT f."Id", f."Address", f."CreatedAt", f."CreatedBy", f."DeletedAt", f."DeletedBy", f."Description", f."EnforcementMode", f."IsActive", f."IsDeleted", f."Latitude", f."Longitude", f."Name", f."RadiusMeters", f."UpdatedAt", f."UpdatedBy"
+    FROM "FieldAreas" AS f
+    WHERE NOT (f."IsDeleted") AND f."Id" = @__id_0 AND NOT (f."IsDeleted")
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT f0."Id", f0."CreatedAt", f0."CreatedBy", f0."DeletedAt", f0."DeletedBy", f0."DynamicFormId", f0."EmployeeId", f0."ExpectedEndTime", f0."FieldAreaId", f0."Instructions", f0."IsDeleted", f0."Priority", f0."RequiredInformation", f0."StartTime", f0."Status", f0."UpdatedAt", f0."UpdatedBy", f0."VisitDate"
+    FROM "FieldAssignments" AS f0
+    WHERE NOT (f0."IsDeleted")
+) AS t0 ON t."Id" = t0."FieldAreaId"
+ORDER BY t."Id"
+2026-08-11 11:59:04.228 +05:30 [INF] Executing OkObjectResult, writing value of type 'FEMS.Application.Common.Models.ApiResponse`1[[FEMS.Application.FieldAreas.FieldAreaResponse, FEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 11:59:04.236 +05:30 [INF] Executed action FEMS.Api.Controllers.FieldAreasController.Update (FEMS.Api) in 1517.5958ms
+2026-08-11 11:59:04.236 +05:30 [INF] Executed endpoint 'FEMS.Api.Controllers.FieldAreasController.Update (FEMS.Api)'
+2026-08-11 11:59:04.236 +05:30 [INF] HTTP PUT /api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 responded 200 in 2310.4339 ms
+2026-08-11 11:59:04.264 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5080/api/field-areas/ffa4f7b4-f08d-42ed-be21-759a93578e57 - 200 null application/json; charset=utf-8 2338.4849ms
+2026-08-11 19:06:42.211 +05:30 [INF] Executed DbCommand (90ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 19:06:42.367 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-11 19:06:42.462 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 19:06:42.525 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2026-08-11 19:06:42.526 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-11 19:06:42.555 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-08-11 19:06:42.983 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 19:06:42.993 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 19:06:42.995 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 19:06:42.996 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__name_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Roles" AS r
+    WHERE NOT (r."IsDeleted") AND r."Name" = @__name_0)
+2026-08-11 19:06:43.036 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE NOT (u."IsDeleted"))
+2026-08-11 19:06:43.046 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "SystemSettings" AS s
+    WHERE NOT (s."IsDeleted"))
+2026-08-11 19:06:43.074 +05:30 [INF] User profile is available. Using 'C:\Users\KARTHI\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-11 19:06:43.404 +05:30 [INF] Now listening on: http://0.0.0.0:5080
+2026-08-11 19:06:43.404 +05:30 [INF] Now listening on: https://0.0.0.0:5443
+2026-08-11 19:06:43.406 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 19:06:43.406 +05:30 [INF] Hosting environment: Development
+2026-08-11 19:06:43.406 +05:30 [INF] Content root path: D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Api
+2026-08-11 19:06:43.709 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5080/swagger/index.html - null null
+2026-08-11 19:06:43.925 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5080/swagger/index.html - 200 null text/html;charset=utf-8 218.5507ms
+2026-08-11 19:07:13.310 +05:30 [INF] Request starting HTTP/1.1 GET http://advancement-learners-gently-object.trycloudflare.com/swagger/index.html - null null
+2026-08-11 19:07:13.313 +05:30 [INF] Request finished HTTP/1.1 GET http://advancement-learners-gently-object.trycloudflare.com/swagger/index.html - 200 null text/html;charset=utf-8 2.6631ms

@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "FEMS Field App",
+    "slug": "fems-field-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": [
+      "android"
+    ],
+    "splash": {
+      "backgroundColor": "#1565C0"
+    },
+    "android": {
+      "package": "com.fems.fieldapp",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "POST_NOTIFICATIONS"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#1565C0"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9826a301-5bd6-4e5f-a6aa-25a139162389"
+      }
+    },
+    "owner": "pavi_288"
+  }
+}

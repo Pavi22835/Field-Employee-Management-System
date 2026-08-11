@@ -1,0 +1,15 @@
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.csproj.AssemblyReference.cache
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.AssemblyInfoInputs.cache
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.AssemblyInfo.cs
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.csproj.CoreCompileInputs.cache
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\bin\Debug\net8.0\FEMS.Application.deps.json
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\bin\Debug\net8.0\FEMS.Application.dll
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\bin\Debug\net8.0\FEMS.Application.pdb
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\bin\Debug\net8.0\FEMS.Domain.dll
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\bin\Debug\net8.0\FEMS.Domain.pdb
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.App.00D52C5E.Up2Date
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.dll
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\refint\FEMS.Application.dll
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\FEMS.Application.pdb
+D:\2026 Projects\APPS\Geo_Fens\Codebase\Backend\src\FEMS.Application\obj\Debug\net8.0\ref\FEMS.Application.dll
