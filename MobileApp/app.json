@@ -7,9 +7,6 @@
     "platforms": [
       "android"
     ],
-    "splash": {
-      "backgroundColor": "#1565C0"
-    },
     "android": {
       "package": "com.fems.fieldapp",
       "permissions": [
@@ -27,6 +24,14 @@
         "projectId": "9826a301-5bd6-4e5f-a6aa-25a139162389"
       }
     },
-    "owner": "pavi_288"
+    "owner": "pavi_288",
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1565C0"
+        }
+      ]
+    ]
   }
 }
