@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { apiClient } from "@/api/client";
+import { apiClient, setOnAuthExpired } from "@/api/client";
 import { secureTokenStorage } from "@/api/secureTokenStorage";
 import { getOrCreateInstallationId } from "@/device/deviceIdentity";
 import { enrollDevice } from "@/device/enrollDevice";
@@ -41,6 +41,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (user) AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
     else AsyncStorage.removeItem(USER_KEY);
   }, [user]);
+
+  // A session restored from AsyncStorage on app start can hold a refresh token that
+  // expired while the app was closed. The interceptor in client.ts detects that failure;
+  // this callback is how it tells us to drop the cached session so RootNavigator falls
+  // back to Login instead of leaving a Dashboard rendered whose API calls all 401 forever.
+  useEffect(() => {
+    setOnAuthExpired(() => setUser(null));
+  }, []);
 
   const login = async (username: string, password: string) => {
     // Section 19: device binding — the app's installation GUID is sent with login so

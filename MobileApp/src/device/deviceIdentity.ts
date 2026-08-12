@@ -1,7 +1,7 @@
 import * as SecureStore from "expo-secure-store";
 import * as Application from "expo-application";
 import * as Device from "expo-device";
-import { v4 as uuidv4 } from "uuid";
+import { generateUuidV4 } from "@/utils/uuid";
 
 // Section 6: device identity is derived from an app-scoped GUID generated on first
 // launch and stored in encrypted storage (Android Keystore, via expo-secure-store) —
@@ -12,7 +12,7 @@ export async function getOrCreateInstallationId(): Promise<string> {
   const existing = await SecureStore.getItemAsync(INSTALL_ID_KEY);
   if (existing) return existing;
 
-  const generated = uuidv4();
+  const generated = generateUuidV4();
   await SecureStore.setItemAsync(INSTALL_ID_KEY, generated);
   return generated;
 }
