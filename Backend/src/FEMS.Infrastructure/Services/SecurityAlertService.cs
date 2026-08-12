@@ -29,7 +29,7 @@ public class SecurityAlertService : ISecurityAlertService
             .Select(a => new SecurityAlertResponse(
                 a.Id, a.AlertType, a.Severity.ToString(), a.Message,
                 a.EmployeeId, a.Employee != null ? a.Employee.FirstName + " " + a.Employee.LastName : null,
-                a.DeviceId, a.IsAcknowledged, a.AcknowledgedAt, a.CreatedAt))
+                a.DeviceId, a.FieldVisitId, a.IsAcknowledged, a.AcknowledgedAt, a.CreatedAt))
             .ToListAsync(ct);
 
         return new PagedResult<SecurityAlertResponse> { Items = items, PageNumber = pageNumber, PageSize = pageSize, TotalCount = total };

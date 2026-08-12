@@ -10,6 +10,7 @@ public record SecurityAlertResponse(
     Guid? EmployeeId,
     string? EmployeeName,
     Guid? DeviceId,
+    Guid? FieldVisitId,
     bool IsAcknowledged,
     DateTimeOffset? AcknowledgedAt,
     DateTimeOffset CreatedAt);

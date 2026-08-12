@@ -217,7 +217,8 @@ public class FieldVisitService : IFieldVisitService
 
     public async Task<RecordLocationResponse> RecordLocationAsync(Guid fieldVisitId, Guid employeeId, RecordLocationRequest request, CancellationToken ct = default)
     {
-        var visit = await _db.FieldVisits.FirstOrDefaultAsync(v => v.Id == fieldVisitId && !v.IsDeleted, ct)
+        var visit = await _db.FieldVisits.Include(v => v.FieldAssignment).ThenInclude(a => a.FieldArea)
+            .FirstOrDefaultAsync(v => v.Id == fieldVisitId && !v.IsDeleted, ct)
             ?? throw new NotFoundException(nameof(FieldVisit), fieldVisitId);
 
         if (visit.EmployeeId != employeeId)
@@ -243,8 +244,59 @@ public class FieldVisitService : IFieldVisitService
             CapturedAt = request.CapturedAt
         });
 
+        await EvaluateGeofenceTransitionAsync(visit, request, ct);
+
         await _db.SaveChangesAsync(ct);
         return new RecordLocationResponse(true, "Location recorded.");
+    }
+
+    private const string GeofenceExitAlertType = "GeofenceExit";
+    private const string GeofenceReentryAlertType = "GeofenceReentry";
+
+    // Audit follow-up (section 24): unlike CheckInAsync's one-time gate, this evaluates every
+    // periodic ping against the assignment's FieldArea and raises a SecurityAlert only on an
+    // inside->outside or outside->inside transition. Debounced by reading the visit's own most
+    // recent GeofenceExit/GeofenceReentry alert (rather than adding separate state) so repeated
+    // pings while still outside — or still inside — never create duplicates.
+    private async Task EvaluateGeofenceTransitionAsync(FieldVisit visit, RecordLocationRequest request, CancellationToken ct)
+    {
+        var area = visit.FieldAssignment.FieldArea;
+        if (area.EnforcementMode == GeofenceEnforcementMode.Disabled) return;
+
+        var distance = GeofenceCalculator.DistanceMeters(
+            (double)request.Latitude, (double)request.Longitude, (double)area.Latitude, (double)area.Longitude);
+        var isInside = distance <= area.RadiusMeters;
+
+        var lastTransition = await _db.SecurityAlerts
+            .Where(a => a.FieldVisitId == visit.Id && (a.AlertType == GeofenceExitAlertType || a.AlertType == GeofenceReentryAlertType))
+            .OrderByDescending(a => a.CreatedAt)
+            .FirstOrDefaultAsync(ct);
+        var wasOutside = lastTransition?.AlertType == GeofenceExitAlertType;
+
+        if (!isInside && !wasOutside)
+        {
+            _db.SecurityAlerts.Add(new SecurityAlert
+            {
+                EmployeeId = visit.EmployeeId,
+                DeviceId = visit.DeviceId,
+                FieldVisitId = visit.Id,
+                AlertType = GeofenceExitAlertType,
+                Severity = SecurityAlertSeverity.Warning,
+                Message = $"Employee moved outside the assigned field area \"{area.Name}\" ({distance:F0}m from center; allowed radius {area.RadiusMeters}m)."
+            });
+        }
+        else if (isInside && wasOutside)
+        {
+            _db.SecurityAlerts.Add(new SecurityAlert
+            {
+                EmployeeId = visit.EmployeeId,
+                DeviceId = visit.DeviceId,
+                FieldVisitId = visit.Id,
+                AlertType = GeofenceReentryAlertType,
+                Severity = SecurityAlertSeverity.Info,
+                Message = $"Employee re-entered the assigned field area \"{area.Name}\"."
+            });
+        }
     }
 
     private bool IsUnrestrictedManagement => _currentUser.IsInRole("SuperAdmin") || _currentUser.IsInRole("Admin");

@@ -15,6 +15,9 @@ public class SecurityAlert : AuditableEntity
     public Guid? DeviceId { get; set; }
     public Device? Device { get; set; }
 
+    public Guid? FieldVisitId { get; set; }
+    public FieldVisit? FieldVisit { get; set; }
+
     public string AlertType { get; set; } = default!;
     public SecurityAlertSeverity Severity { get; set; } = SecurityAlertSeverity.Info;
     public string Message { get; set; } = default!;
