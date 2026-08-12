@@ -81,6 +81,7 @@ builder.Services.AddAuthentication(options =>
 // ---- Policy-based RBAC (section 4 &amp; 5.1) ----
 builder.Services.AddAuthorization(options =>
 {
+    options.AddPolicy(PolicyNames.SuperAdminOnly, p => p.RequireRole(RoleNames.SuperAdmin));
     options.AddPolicy(PolicyNames.AdminOnly, p => p.RequireRole(RoleNames.SuperAdmin, RoleNames.Admin));
     options.AddPolicy(PolicyNames.ManagementOnly, p => p.RequireRole(RoleNames.SuperAdmin, RoleNames.Admin, RoleNames.Supervisor));
     options.AddPolicy(PolicyNames.EmployeeOnly, p => p.RequireRole(RoleNames.Employee));

@@ -10,6 +10,7 @@ public static class RoleNames
 
 public static class PolicyNames
 {
+    public const string SuperAdminOnly = "SuperAdminOnly";
     public const string AdminOnly = "AdminOnly";
     public const string ManagementOnly = "ManagementOnly"; // SuperAdmin, Admin, Supervisor
     public const string EmployeeOnly = "EmployeeOnly";
