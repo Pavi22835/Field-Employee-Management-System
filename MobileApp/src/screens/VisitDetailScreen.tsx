@@ -19,17 +19,26 @@ export function VisitDetailScreen() {
   const [checkingIn, setCheckingIn] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [locationEnabled, setLocationEnabled] = useState(false);
+  const [locationError, setLocationError] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       setLocationEnabled(status === "granted");
       if (status === "granted") {
-        const pos = await Location.getCurrentPositionAsync({});
-        setDistance(GeofenceCalculator.distanceMeters(
-          pos.coords.latitude, pos.coords.longitude,
-          assignment.fieldAreaLatitude, assignment.fieldAreaLongitude
-        ));
+        // Location services can be off system-wide (distinct from permission denial) or
+        // the read can simply time out — either way this must not leave the screen stuck
+        // on "Getting your location..." forever. Check-in itself still works without a
+        // distance reading (the server accepts an omitted lat/lng), so this is non-blocking.
+        try {
+          const pos = await Location.getCurrentPositionAsync({});
+          setDistance(GeofenceCalculator.distanceMeters(
+            pos.coords.latitude, pos.coords.longitude,
+            assignment.fieldAreaLatitude, assignment.fieldAreaLongitude
+          ));
+        } catch {
+          setLocationError(true);
+        }
       }
     })();
   }, [assignment]);
@@ -89,7 +98,13 @@ export function VisitDetailScreen() {
 
       <View style={styles.distanceCard}>
         {distance === null ? (
-          <Text style={styles.meta}>{locationEnabled ? "Getting your location..." : "Location permission required for geofence check-in."}</Text>
+          <Text style={styles.meta}>
+            {!locationEnabled
+              ? "Location permission required for geofence check-in."
+              : locationError
+                ? "Could not determine your distance to the site. You can still start the visit."
+                : "Getting your location..."}
+          </Text>
         ) : (
           <>
             <Text style={styles.distanceValue}>{Math.round(distance)} m</Text>

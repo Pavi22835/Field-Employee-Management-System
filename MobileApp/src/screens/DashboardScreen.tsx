@@ -39,7 +39,10 @@ export function DashboardScreen() {
     setRefreshing(false);
   };
 
-  const todaysPrimary = assignments.find((a) => a.status === "Assigned" || a.status === "Accepted" || a.status === "Started");
+  // Section 14: an employee can have more than one assignment on the same day, so every
+  // active one must be shown as its own card — .find() here would silently hide all but
+  // the first, even though the rest are correctly fetched into `assignments`.
+  const activeAssignments = assignments.filter((a) => a.status === "Assigned" || a.status === "Accepted" || a.status === "Started");
   const completedCount = assignments.filter((a) => a.status === "Completed").length;
   const pendingCount = assignments.filter((a) => a.status === "Assigned" || a.status === "Accepted").length;
 
@@ -60,20 +63,24 @@ export function DashboardScreen() {
         <TouchableOpacity onPress={logout}><Text style={styles.logout}>Logout</Text></TouchableOpacity>
       </View>
 
-      {/* Today's Assignment card */}
-      {todaysPrimary ? (
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Today&apos;s Assignment</Text>
-          <Text style={styles.area}>{todaysPrimary.fieldAreaName}</Text>
-          <Text style={styles.meta}>{todaysPrimary.startTime} - {todaysPrimary.expectedEndTime}</Text>
-          {todaysPrimary.instructions && <Text style={styles.instructions}>{todaysPrimary.instructions}</Text>}
-          <TouchableOpacity
-            style={styles.startButton}
-            onPress={() => navigation.navigate("VisitDetail", { assignment: todaysPrimary })}
-          >
-            <Text style={styles.startButtonText}>START VISIT</Text>
-          </TouchableOpacity>
-        </View>
+      {/* Today's Assignment card(s) — one per active assignment, so a second/third same-day
+          assignment (e.g. a different field area) is never hidden behind the first. */}
+      {activeAssignments.length > 0 ? (
+        activeAssignments.map((assignment) => (
+          <View key={assignment.id} style={styles.card}>
+            <Text style={styles.cardTitle}>Today&apos;s Assignment</Text>
+            <Text style={styles.area}>{assignment.fieldAreaName}</Text>
+            <Text style={styles.meta}>{assignment.startTime} - {assignment.expectedEndTime}</Text>
+            <Text style={styles.meta}>Status: {assignment.status}</Text>
+            {assignment.instructions && <Text style={styles.instructions}>{assignment.instructions}</Text>}
+            <TouchableOpacity
+              style={styles.startButton}
+              onPress={() => navigation.navigate("VisitDetail", { assignment })}
+            >
+              <Text style={styles.startButtonText}>START VISIT</Text>
+            </TouchableOpacity>
+          </View>
+        ))
       ) : (
         <View style={styles.card}><Text style={styles.meta}>No active assignment right now.</Text></View>
       )}
