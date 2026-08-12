@@ -116,7 +116,11 @@ app.UseSerilogRequestLogging();
 // there per section 5.4). In Development we skip the redirect so the plain-HTTP endpoint
 // stays reachable for local testing from a physical device/emulator that hasn't been
 // configured to trust the dev machine's self-signed certificate.
-if (!app.Environment.IsDevelopment())
+// Non-Development environments also allow an explicit opt-out (Security:UseHttpsRedirection
+// = false) for interim HTTP-only Kestrel hosting where no HTTPS binding/certificate exists
+// yet — without it, every request 307s to a non-existent HTTPS listener and the API becomes
+// unreachable. Defaults to true (redirect enforced) so this must be turned off deliberately.
+if (!app.Environment.IsDevelopment() && app.Configuration.GetValue("Security:UseHttpsRedirection", true))
 {
     app.UseHttpsRedirection();
 }
