@@ -9,7 +9,7 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://advancement-learners-gently-object.trycloudflare.com/api"
+        "EXPO_PUBLIC_API_BASE_URL": "https://rap-vii-watch-wyoming.trycloudflare.com/api"
       }
     }
   },
