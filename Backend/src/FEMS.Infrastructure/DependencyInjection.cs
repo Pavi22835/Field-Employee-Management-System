@@ -9,6 +9,7 @@ using FEMS.Application.FieldAssignments;
 using FEMS.Application.FieldVisits;
 using FEMS.Application.Roles;
 using FEMS.Application.Settings;
+using FEMS.Application.Users;
 using FEMS.Infrastructure.Identity;
 using FEMS.Infrastructure.Persistence;
 using FEMS.Infrastructure.Services;
@@ -46,6 +47,7 @@ public static class DependencyInjection
         services.AddScoped<IFileStorageService, FileStorageService>();
         services.AddScoped<ISystemSettingsService, SystemSettingsService>();
         services.AddScoped<IPushNotificationService, FcmPushNotificationService>();
+        services.AddScoped<IUserManagementService, UserManagementService>();
 
         return services;
     }
