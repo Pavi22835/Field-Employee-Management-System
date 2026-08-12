@@ -12,6 +12,6 @@ public record LoginResponse(
     Guid? EmployeeId,
     bool DeviceVerified);
 
-public record RefreshRequest(string RefreshToken);
+public record RefreshRequest(string RefreshToken, Guid? DeviceAppInstallationId = null);
 
 public record LogoutRequest(string RefreshToken);

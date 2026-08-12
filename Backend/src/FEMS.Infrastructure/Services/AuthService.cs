@@ -189,7 +189,24 @@ public class AuthService : IAuthService
 
         var user = existing.User;
         var roles = user.UserRoles.Select(ur => ur.Role.Name).ToList();
-        var accessToken = _jwtTokenService.GenerateAccessToken(user, roles, user.Employee?.Id, null);
+
+        // Section 19: re-validate device binding on refresh too, so the device claim (and
+        // therefore /devices/events plus visit/file audit trails) survives past the access
+        // token's short expiry instead of silently dropping the moment it's first refreshed.
+        Guid? deviceId = null;
+        if (request.DeviceAppInstallationId.HasValue && user.Employee is not null)
+        {
+            var device = await _db.Devices.FirstOrDefaultAsync(
+                d => d.AppInstallationId == request.DeviceAppInstallationId.Value, ct);
+
+            if (device is not null && device.AssignedEmployeeId == user.Employee.Id &&
+                device.Status == Domain.Enums.DeviceStatus.Active)
+            {
+                deviceId = device.Id;
+            }
+        }
+
+        var accessToken = _jwtTokenService.GenerateAccessToken(user, roles, user.Employee?.Id, deviceId);
 
         await _db.SaveChangesAsync(ct);
 
@@ -198,7 +215,7 @@ public class AuthService : IAuthService
 
         return new LoginResponse(
             accessToken, newToken, _dateTime.UtcNow.AddMinutes(accessMinutes),
-            user.Id, user.Username, roles, user.Employee?.Id, false);
+            user.Id, user.Username, roles, user.Employee?.Id, deviceId.HasValue);
     }
 
     public async Task LogoutAsync(LogoutRequest request, CancellationToken ct = default)
