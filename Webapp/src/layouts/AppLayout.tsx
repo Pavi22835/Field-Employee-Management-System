@@ -11,7 +11,9 @@ import {
   Map,
   ClipboardList,
   BellRing,
-  Settings
+  Settings,
+  FileText,
+  ShieldCheck
 } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "@/auth/AuthContext";
@@ -24,18 +26,20 @@ const navItems = [
   { label: "Devices", path: "/devices", icon: <Smartphone /> },
   { label: "Field Areas", path: "/field-areas", icon: <Map /> },
   { label: "Assignments", path: "/assignments", icon: <ClipboardList /> },
+  { label: "Dynamic Forms", path: "/dynamic-forms", icon: <FileText />, roles: ["SuperAdmin", "Admin"] },
   { label: "Alerts", path: "/alerts", icon: <BellRing /> },
-  { label: "Settings", path: "/settings", icon: <Settings /> }
+  { label: "Settings", path: "/settings", icon: <Settings /> },
+  { label: "System Users", path: "/system-users", icon: <ShieldCheck />, roles: ["SuperAdmin"] }
 ];
 
 export function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const { user, logout } = useAuth();
+  const { user, logout, hasAnyRole } = useAuth();
 
   const drawer = (
     <List>
-      {navItems.map((item) => (
+      {navItems.filter((item) => !item.roles || hasAnyRole(...item.roles)).map((item) => (
         <ListItemButton
           key={item.path}
           component={NavLink}

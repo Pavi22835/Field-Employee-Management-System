@@ -10,6 +10,8 @@ import { FieldAreasPage } from "@/pages/FieldAreasPage";
 import { AssignmentsPage } from "@/pages/AssignmentsPage";
 import { AlertsPage } from "@/pages/AlertsPage";
 import { SettingsPage } from "@/pages/SettingsPage";
+import { SystemUsersPage } from "@/pages/SystemUsersPage";
+import { DynamicFormsPage } from "@/pages/DynamicFormsPage";
 
 export default function App() {
   return (
@@ -28,6 +30,9 @@ export default function App() {
                 <Route index element={<DevicesPage />} />
               </Route>
               <Route path="/field-areas" element={<FieldAreasPage />} />
+              <Route path="/dynamic-forms" element={<ProtectedRoute roles={["SuperAdmin", "Admin"]} />}>
+                <Route index element={<DynamicFormsPage />} />
+              </Route>
               <Route path="/assignments" element={<ProtectedRoute roles={["SuperAdmin", "Admin", "Supervisor"]} />}>
                 <Route index element={<AssignmentsPage />} />
               </Route>
@@ -36,6 +41,9 @@ export default function App() {
               </Route>
               <Route path="/settings" element={<ProtectedRoute roles={["SuperAdmin", "Admin"]} />}>
                 <Route index element={<SettingsPage />} />
+              </Route>
+              <Route path="/system-users" element={<ProtectedRoute roles={["SuperAdmin"]} />}>
+                <Route index element={<SystemUsersPage />} />
               </Route>
             </Route>
           </Route>

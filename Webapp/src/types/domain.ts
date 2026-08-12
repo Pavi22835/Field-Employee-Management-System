@@ -89,6 +89,16 @@ export interface RoleResponse {
   description?: string;
 }
 
+// Section 4: pure system accounts (Admin/SuperAdmin) — no linked Employee record.
+export interface SystemUserResponse {
+  id: string;
+  username: string;
+  email: string;
+  isActive: boolean;
+  lastLoginAt?: string;
+  roles: string[];
+}
+
 export interface DynamicFormFieldDto {
   id?: string;
   label: string;
