@@ -8,6 +8,7 @@ bin/
 obj/
 *.user
 logs/
+Backend/publish/
 
 # .NET local secrets / environment overrides that must never be committed
 **/appsettings.*.local.json
