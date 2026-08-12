@@ -37,6 +37,13 @@ public class FieldVisitService : IFieldVisitService
         if (assignment.Status is VisitStatus.Completed or VisitStatus.Cancelled or VisitStatus.Missed)
             throw new AppException($"Cannot check in: assignment is already {assignment.Status}.", 409);
 
+        // A FieldVisit row already exists once check-in starts (Started/Accepted/InProgress),
+        // enforced by the IX_FieldVisits_FieldAssignmentId unique constraint — check explicitly
+        // so a retry/double-tap gets a clean 409 instead of an unhandled unique-violation 500.
+        var alreadyCheckedIn = await _db.FieldVisits.AnyAsync(v => v.FieldAssignmentId == assignment.Id && !v.IsDeleted, ct);
+        if (alreadyCheckedIn)
+            throw new AppException("A visit has already been started for this assignment.", 409);
+
         double? distance = null;
         var geofenceSatisfied = true;
         var geofenceMessage = "Location not supplied; geofence not evaluated.";
@@ -94,8 +101,14 @@ public class FieldVisitService : IFieldVisitService
         if (visit.Status is VisitStatus.Completed or VisitStatus.Cancelled)
             throw new AppException($"Cannot submit data: visit is already {visit.Status}.", 409);
 
-        var formExists = await _db.DynamicForms.AnyAsync(f => f.Id == dynamicFormId && !f.IsDeleted, ct);
-        if (!formExists) throw new NotFoundException(nameof(DynamicForm), dynamicFormId);
+        var form = await _db.DynamicForms.Include(f => f.Fields)
+            .FirstOrDefaultAsync(f => f.Id == dynamicFormId && !f.IsDeleted, ct)
+            ?? throw new NotFoundException(nameof(DynamicForm), dynamicFormId);
+
+        // Section 10 & 12: IsRequired is enforced here, not just client-side — a caller
+        // going around the mobile app (or a client bug) must not be able to persist a
+        // submission, and therefore complete the visit, without the form's required data.
+        ValidateRequiredFields(form.Fields, values, files);
 
         var dataJson = JsonSerializer.Serialize(values.ToDictionary(v => v.FormFieldId.ToString(), v => v.Value));
 
@@ -137,6 +150,31 @@ public class FieldVisitService : IFieldVisitService
 
         var fileCount = await _db.FormSubmissionFiles.CountAsync(f => f.FormSubmissionId == submission.Id, ct);
         return new FormSubmissionResponse(submission.Id, submission.FieldVisitId, submission.DynamicFormId, submission.SubmittedAt, fileCount);
+    }
+
+    // Photo/Video/DocumentAttachment answer with an uploaded file, not a `values` entry;
+    // every other field type (Text, Number, Dropdown, Checkbox, RadioButton, Date,
+    // GpsCoordinates, Signature) answers with a plain string value.
+    private static readonly HashSet<FormFieldType> FileBackedFieldTypes = new()
+    {
+        FormFieldType.Photo, FormFieldType.Video, FormFieldType.DocumentAttachment
+    };
+
+    private static void ValidateRequiredFields(
+        IEnumerable<FormField> fields,
+        IReadOnlyList<SubmitVisitFormValueDto> values,
+        IReadOnlyList<(Guid? formFieldId, string fileName, string contentType, Stream content, decimal? lat, decimal? lng)> files)
+    {
+        var missingLabels = fields
+            .Where(f => f.IsRequired)
+            .Where(f => FileBackedFieldTypes.Contains(f.FieldType)
+                ? !files.Any(file => file.formFieldId == f.Id)
+                : string.IsNullOrWhiteSpace(values.FirstOrDefault(v => v.FormFieldId == f.Id)?.Value))
+            .Select(f => f.Label)
+            .ToList();
+
+        if (missingLabels.Count > 0)
+            throw new AppException($"Please complete all required fields: {string.Join(", ", missingLabels)}.", 422);
     }
 
     public async Task<FieldVisitResponse> CompleteAsync(Guid fieldVisitId, Guid employeeId, CompleteVisitRequest request, CancellationToken ct = default)

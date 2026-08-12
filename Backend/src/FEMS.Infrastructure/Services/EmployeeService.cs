@@ -9,10 +9,13 @@ namespace FEMS.Infrastructure.Services;
 
 /// <summary>
 /// Section 4 &amp; 17: creating an employee also provisions the linked User account.
-/// The "Add Employee" flow only ever provisions the Employee role — Admin/Supervisor/
-/// SuperAdmin accounts are not created through this endpoint, by design (see the
-/// Employee Management RBAC requirement: Admin manages employees, but cannot mint more
-/// Admins/Supervisors from this form).
+/// The "Add Employee" flow provisions the Employee or Supervisor role — a Supervisor is
+/// still an Employee record in this domain model (it needs an EmployeeId for the
+/// Employee.SupervisorId scoping used throughout field-visit/employee queries), so it
+/// reuses this same endpoint rather than a separate one. Admin/SuperAdmin accounts have
+/// no Employee record at all and are provisioned via the SuperAdmin-only UsersController
+/// instead (see section 4's RBAC requirement: Admin manages employees/supervisors, but
+/// cannot mint more Admins from this form).
 /// </summary>
 public class EmployeeService : IEmployeeService
 {
@@ -21,7 +24,7 @@ public class EmployeeService : IEmployeeService
     private readonly IDateTimeProvider _dateTime;
     private readonly ICurrentUserService _currentUser;
 
-    private static readonly string[] AssignableRoles = { "Employee" };
+    private static readonly string[] AssignableRoles = { "Employee", "Supervisor" };
 
     public EmployeeService(IApplicationDbContext db, IPasswordHasher passwordHasher, IDateTimeProvider dateTime, ICurrentUserService currentUser)
     {
@@ -83,6 +86,8 @@ public class EmployeeService : IEmployeeService
 
         if (await _db.Users.AnyAsync(u => u.Username == request.Username, ct))
             throw new AppException("Username is already taken.", 409);
+        if (await _db.Users.AnyAsync(u => u.Email == request.Email, ct))
+            throw new AppException("Email is already in use.", 409);
         if (await _db.Employees.AnyAsync(e => e.EmployeeCode == request.EmployeeCode, ct))
             throw new AppException("Employee code is already in use.", 409);
 
