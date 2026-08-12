@@ -24,10 +24,12 @@ const reviewColor: Record<string, "default" | "success" | "warning" | "error"> =
 export function AssignmentsPage() {
   const [rows, setRows] = useState<FieldAssignmentResponse[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [open, setOpen] = useState(false);
   const [employees, setEmployees] = useState<EmployeeResponse[]>([]);
   const [areas, setAreas] = useState<FieldAreaResponse[]>([]);
   const [forms, setForms] = useState<DynamicFormResponse[]>([]);
+  const [dropdownsError, setDropdownsError] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
@@ -38,6 +40,7 @@ export function AssignmentsPage() {
 
   const [visits, setVisits] = useState<FieldVisitSummaryResponse[]>([]);
   const [visitsLoading, setVisitsLoading] = useState(true);
+  const [visitsLoadError, setVisitsLoadError] = useState(false);
   const [detail, setDetail] = useState<FieldVisitDetailResponse | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [photoUrls, setPhotoUrls] = useState<Record<string, string>>({});
@@ -47,34 +50,53 @@ export function AssignmentsPage() {
 
   const loadAssignments = () => {
     setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<PagedResult<FieldAssignmentResponse>>>("/field-assignments", { params: { pageSize: 100 } })
       .then((res) => setRows(res.data.data?.items ?? []))
+      .catch(() => setLoadError(true))
       .finally(() => setLoading(false));
   };
 
   const loadVisits = () => {
     setVisitsLoading(true);
+    setVisitsLoadError(false);
     apiClient.get<ApiResponse<PagedResult<FieldVisitSummaryResponse>>>("/field-visits", { params: { pageSize: 100 } })
       .then((res) => setVisits(res.data.data?.items ?? []))
+      .catch(() => setVisitsLoadError(true))
       .finally(() => setVisitsLoading(false));
+  };
+
+  const loadDropdowns = () => {
+    setDropdownsError(false);
+    Promise.all([
+      apiClient.get<ApiResponse<PagedResult<EmployeeResponse>>>("/employees", { params: { pageSize: 200 } })
+        .then((res) => setEmployees(res.data.data?.items ?? [])),
+      apiClient.get<ApiResponse<PagedResult<FieldAreaResponse>>>("/field-areas", { params: { pageSize: 200 } })
+        .then((res) => setAreas(res.data.data?.items ?? [])),
+      apiClient.get<ApiResponse<PagedResult<DynamicFormResponse>>>("/dynamic-forms", { params: { pageSize: 100 } })
+        .then((res) => setForms(res.data.data?.items ?? []))
+    ]).catch(() => setDropdownsError(true));
   };
 
   useEffect(() => {
     loadAssignments();
     loadVisits();
-    apiClient.get<ApiResponse<PagedResult<EmployeeResponse>>>("/employees", { params: { pageSize: 200 } })
-      .then((res) => setEmployees(res.data.data?.items ?? []));
-    apiClient.get<ApiResponse<PagedResult<FieldAreaResponse>>>("/field-areas", { params: { pageSize: 200 } })
-      .then((res) => setAreas(res.data.data?.items ?? []));
-    apiClient.get<ApiResponse<PagedResult<DynamicFormResponse>>>("/dynamic-forms", { params: { pageSize: 100 } })
-      .then((res) => setForms(res.data.data?.items ?? []));
+    loadDropdowns();
   }, []);
 
   const handleCreate = async () => {
     setSaving(true);
     setError(null);
     try {
-      await apiClient.post("/field-assignments", { ...form, dynamicFormId: form.dynamicFormId || null });
+      // The backend's TimeOnly fields require "HH:mm:ss", but the <input type="time">
+      // controls below only ever produce "HH:mm" (no seconds).
+      const toTimeOnly = (t: string) => (t.length === 5 ? `${t}:00` : t);
+      await apiClient.post("/field-assignments", {
+        ...form,
+        startTime: toTimeOnly(form.startTime),
+        expectedEndTime: toTimeOnly(form.expectedEndTime),
+        dynamicFormId: form.dynamicFormId || null
+      });
       setOpen(false);
       loadAssignments();
     } catch (err: any) {
@@ -167,30 +189,49 @@ export function AssignmentsPage() {
         <Button variant="contained" onClick={() => setOpen(true)}>New Assignment</Button>
       </Stack>
 
-      <Box
-        sx={{
-          height: 400, bgcolor: "background.paper", maxWidth: "100%", mb: 4,
-          "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" }
-        }}
-      >
-        <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
-      </Box>
+      {loadError ? (
+        <Box sx={{ textAlign: "center", mb: 4 }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load assignments.</Typography>
+          <Button variant="contained" onClick={loadAssignments}>Retry</Button>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            height: 400, bgcolor: "background.paper", maxWidth: "100%", mb: 4,
+            "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" }
+          }}
+        >
+          <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
+        </Box>
+      )}
 
       <Typography variant="h5" gutterBottom>Field Visits (review &amp; approve submissions)</Typography>
-      <Box
-        sx={{
-          height: 400, bgcolor: "background.paper", maxWidth: "100%",
-          "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" }
-        }}
-      >
-        <DataGrid rows={visits} columns={visitColumns} loading={visitsLoading} getRowId={(r) => r.id} />
-      </Box>
+      {visitsLoadError ? (
+        <Box sx={{ textAlign: "center" }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load visits.</Typography>
+          <Button variant="contained" onClick={loadVisits}>Retry</Button>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            height: 400, bgcolor: "background.paper", maxWidth: "100%",
+            "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" }
+          }}
+        >
+          <DataGrid rows={visits} columns={visitColumns} loading={visitsLoading} getRowId={(r) => r.id} />
+        </Box>
+      )}
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>New Field Assignment</DialogTitle>
         <DialogContent>
           <Stack spacing={2} sx={{ mt: 1 }}>
             {error && <Typography color="error">{error}</Typography>}
+            {dropdownsError && (
+              <Alert severity="warning" action={<Button size="small" onClick={loadDropdowns}>Retry</Button>}>
+                Failed to load employees/field areas/forms — the lists below may be incomplete.
+              </Alert>
+            )}
             <TextField select label="Employee" value={form.employeeId} onChange={(e) => setForm({ ...form, employeeId: e.target.value })} required>
               {employees.map((e) => (
                 <MenuItem key={e.id} value={e.id}>{e.firstName} {e.lastName} ({e.employeeCode})</MenuItem>

@@ -12,13 +12,16 @@ const statusColor: Record<string, "default" | "success" | "warning" | "error"> =
 export function DevicesPage() {
   const [rows, setRows] = useState<DeviceListItemResponse[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const [selected, setSelected] = useState<DeviceListItemResponse | null>(null);
 
   const loadDevices = () => {
     setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<PagedResult<DeviceListItemResponse>>>("/admin/devices", { params: { pageSize: 100 } })
       .then((res) => setRows(res.data.data?.items ?? []))
+      .catch(() => setLoadError(true))
       .finally(() => setLoading(false));
   };
 
@@ -33,8 +36,8 @@ export function DevicesPage() {
       if (action === "unassign") await apiClient.post(`/admin/devices/${selected.id}/unassign`);
       if (action === "mark-lost") await apiClient.post(`/admin/devices/${selected.id}/mark-lost`, {});
       loadDevices();
-    } catch {
-      // Error surfaced via response envelope in a real toast; kept minimal here.
+    } catch (err: any) {
+      window.alert(err?.response?.data?.message ?? `Failed to ${action.replace("-", " ")} device.`);
     }
   };
 
@@ -65,21 +68,28 @@ export function DevicesPage() {
         <Typography variant="h5">Devices (section 16)</Typography>
       </Stack>
 
-      <Box
-        sx={{
-          height: 600,
-          bgcolor: "background.paper",
-          maxWidth: "100%",
-          "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" },
-          "& .MuiDataGrid-virtualScroller::-webkit-scrollbar": { height: 8 },
-          "& .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb": {
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            borderRadius: 4
-          }
-        }}
-      >
-        <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
-      </Box>
+      {loadError ? (
+        <Box sx={{ textAlign: "center", mt: 4 }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load devices.</Typography>
+          <Button variant="contained" onClick={loadDevices}>Retry</Button>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            height: 600,
+            bgcolor: "background.paper",
+            maxWidth: "100%",
+            "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" },
+            "& .MuiDataGrid-virtualScroller::-webkit-scrollbar": { height: 8 },
+            "& .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              borderRadius: 4
+            }
+          }}
+        >
+          <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
+        </Box>
+      )}
 
       <Menu anchorEl={menuAnchor} open={!!menuAnchor} onClose={() => setMenuAnchor(null)}>
         <MenuItem onClick={() => runAction("approve")}>Approve</MenuItem>

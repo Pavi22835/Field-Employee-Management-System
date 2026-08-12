@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, CardContent, Grid, Typography, CircularProgress, Box } from "@mui/material";
+import { Button, Card, CardContent, Grid, Typography, CircularProgress, Box } from "@mui/material";
 import { apiClient } from "@/api/client";
 import type { ApiResponse } from "@/types/api";
 import type { DashboardResponse } from "@/types/domain";
@@ -20,15 +20,28 @@ function StatCard({ label, value }: { label: string; value: number }) {
 export function DashboardPage() {
   const [data, setData] = useState<DashboardResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
-  useEffect(() => {
+  const loadDashboard = () => {
+    setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<DashboardResponse>>("/admin/dashboard")
       .then((res) => setData(res.data.data ?? null))
+      .catch(() => setLoadError(true))
       .finally(() => setLoading(false));
-  }, []);
+  };
+
+  useEffect(loadDashboard, []);
 
   if (loading) return <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}><CircularProgress /></Box>;
-  if (!data) return <Typography>Unable to load dashboard.</Typography>;
+  if (loadError || !data) {
+    return (
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Typography color="error" sx={{ mb: 2 }}>Unable to load dashboard.</Typography>
+        <Button variant="contained" onClick={loadDashboard}>Retry</Button>
+      </Box>
+    );
+  }
 
   return (
     <Box>

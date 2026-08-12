@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  Box, Button, Card, CardContent, FormControlLabel, Grid, MenuItem, Snackbar, Stack,
+  Box, Button, Card, CardContent, CircularProgress, FormControlLabel, Grid, MenuItem, Snackbar, Stack,
   Switch, TextField, Typography
 } from "@mui/material";
 import { apiClient } from "@/api/client";
@@ -10,14 +10,22 @@ import type { SystemSettingsResponse } from "@/types/domain";
 // Section 21: admin configuration screens.
 export function SettingsPage() {
   const [settings, setSettings] = useState<SystemSettingsResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const loadSettings = () => {
+    setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<SystemSettingsResponse>>("/admin/settings")
-      .then((res) => setSettings(res.data.data ?? null));
-  }, []);
+      .then((res) => setSettings(res.data.data ?? null))
+      .catch(() => setLoadError(true))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(loadSettings, []);
 
   const update = <K extends keyof SystemSettingsResponse>(key: K, value: SystemSettingsResponse[K]) => {
     if (settings) setSettings({ ...settings, [key]: value });
@@ -37,7 +45,16 @@ export function SettingsPage() {
     }
   };
 
-  if (!settings) return null;
+  if (loading) return <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}><CircularProgress /></Box>;
+
+  if (loadError || !settings) {
+    return (
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Typography color="error" sx={{ mb: 2 }}>Failed to load settings.</Typography>
+        <Button variant="contained" onClick={loadSettings}>Retry</Button>
+      </Box>
+    );
+  }
 
   return (
     <Box>

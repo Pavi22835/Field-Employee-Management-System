@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-  Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
+  Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   Stack, TextField, Typography, List, ListItemButton, ListItemText, Chip
 } from "@mui/material";
 import { MapContainer, TileLayer, Marker, Circle, useMapEvents } from "react-leaflet";
 import { apiClient } from "@/api/client";
+import { useAuth } from "@/auth/AuthContext";
 import type { ApiResponse, PagedResult } from "@/types/api";
 import type { FieldAreaResponse } from "@/types/domain";
 
@@ -17,7 +18,11 @@ function LocationPicker({ onPick }: { onPick: (lat: number, lng: number) => void
 }
 
 export function FieldAreasPage() {
+  const { hasAnyRole } = useAuth();
+  const canCreate = hasAnyRole("SuperAdmin", "Admin");
   const [areas, setAreas] = useState<FieldAreaResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     name: "", description: "", address: "",
@@ -28,8 +33,12 @@ export function FieldAreasPage() {
   const [saving, setSaving] = useState(false);
 
   const loadAreas = () => {
+    setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<PagedResult<FieldAreaResponse>>>("/field-areas", { params: { pageSize: 100 } })
-      .then((res) => setAreas(res.data.data?.items ?? []));
+      .then((res) => setAreas(res.data.data?.items ?? []))
+      .catch(() => setLoadError(true))
+      .finally(() => setLoading(false));
   };
 
   useEffect(loadAreas, []);
@@ -52,34 +61,43 @@ export function FieldAreasPage() {
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
         <Typography variant="h5">Field Areas</Typography>
-        <Button variant="contained" onClick={() => setOpen(true)}>Add Field Area</Button>
+        {canCreate && <Button variant="contained" onClick={() => setOpen(true)}>Add Field Area</Button>}
       </Stack>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <List sx={{ bgcolor: "background.paper" }}>
-            {areas.map((a) => (
-              <ListItemButton key={a.id} sx={{ alignItems: "flex-start" }}>
-                <ListItemText
-                  primary={a.name}
-                  secondary={`${a.radiusMeters}m radius · ${a.assignedEmployeeCount} employees`}
-                />
-                <Chip label={a.enforcementMode} size="small" sx={{ mt: 0.5 }} />
-              </ListItemButton>
-            ))}
-          </List>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Box sx={{ height: 500 }}>
-            <MapContainer center={DEFAULT_CENTER} zoom={11} style={{ height: "100%", width: "100%" }}>
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}><CircularProgress /></Box>
+      ) : loadError ? (
+        <Box sx={{ textAlign: "center", mt: 4 }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load field areas.</Typography>
+          <Button variant="contained" onClick={loadAreas}>Retry</Button>
+        </Box>
+      ) : (
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <List sx={{ bgcolor: "background.paper" }}>
               {areas.map((a) => (
-                <Circle key={a.id} center={[a.latitude, a.longitude]} radius={a.radiusMeters} />
+                <ListItemButton key={a.id} sx={{ alignItems: "flex-start" }}>
+                  <ListItemText
+                    primary={a.name}
+                    secondary={`${a.radiusMeters}m radius · ${a.assignedEmployeeCount} employees`}
+                  />
+                  <Chip label={a.enforcementMode} size="small" sx={{ mt: 0.5 }} />
+                </ListItemButton>
               ))}
-            </MapContainer>
-          </Box>
+            </List>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <Box sx={{ height: 500 }}>
+              <MapContainer center={DEFAULT_CENTER} zoom={11} style={{ height: "100%", width: "100%" }}>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+                {areas.map((a) => (
+                  <Circle key={a.id} center={[a.latitude, a.longitude]} radius={a.radiusMeters} />
+                ))}
+              </MapContainer>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
         <DialogTitle>Add Field Area</DialogTitle>

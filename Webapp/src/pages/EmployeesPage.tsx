@@ -5,18 +5,22 @@ import {
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { apiClient } from "@/api/client";
+import { useAuth } from "@/auth/AuthContext";
 import type { ApiResponse, PagedResult } from "@/types/api";
 import type { EmployeeResponse } from "@/types/domain";
 
 const emptyCreateForm = {
   username: "", email: "", temporaryPassword: "", employeeCode: "",
   firstName: "", lastName: "", phoneNumber: "", designation: "", department: "",
-  dateOfJoining: new Date().toISOString().slice(0, 10)
+  dateOfJoining: new Date().toISOString().slice(0, 10), role: "Employee"
 };
 
 export function EmployeesPage() {
+  const { hasAnyRole } = useAuth();
+  const canCreate = hasAnyRole("SuperAdmin", "Admin");
   const [rows, setRows] = useState<EmployeeResponse[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(emptyCreateForm);
   const [saving, setSaving] = useState(false);
@@ -32,8 +36,10 @@ export function EmployeesPage() {
 
   const loadEmployees = () => {
     setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<PagedResult<EmployeeResponse>>>("/employees", { params: { pageSize: 100 } })
       .then((res) => setRows(res.data.data?.items ?? []))
+      .catch(() => setLoadError(true))
       .finally(() => setLoading(false));
   };
 
@@ -45,9 +51,10 @@ export function EmployeesPage() {
     setSaving(true);
     setError(null);
     try {
-      // The Add Employee form only ever provisions the Employee role — Admin/Supervisor/
-      // SuperAdmin accounts are never created from here (enforced again by the backend).
-      await apiClient.post("/employees", { ...form, role: "Employee" });
+      // The Add Employee form provisions the Employee or Supervisor role — Admin/SuperAdmin
+      // accounts have no Employee record and are created from the System Users page instead
+      // (enforced again by the backend: EmployeeService only ever accepts these two roles).
+      await apiClient.post("/employees", form);
       setOpen(false);
       setForm(emptyCreateForm);
       loadEmployees();
@@ -92,8 +99,12 @@ export function EmployeesPage() {
 
   const handleDeactivate = async (employee: EmployeeResponse) => {
     if (!window.confirm(`Deactivate ${employee.firstName} ${employee.lastName}? They will no longer be able to log in.`)) return;
-    await apiClient.delete(`/employees/${employee.id}`);
-    loadEmployees();
+    try {
+      await apiClient.delete(`/employees/${employee.id}`);
+      loadEmployees();
+    } catch (err: any) {
+      window.alert(err?.response?.data?.message ?? "Failed to deactivate employee.");
+    }
   };
 
   const columns: GridColDef<EmployeeResponse>[] = [
@@ -131,24 +142,31 @@ export function EmployeesPage() {
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
         <Typography variant="h5">Employees</Typography>
-        <Button variant="contained" onClick={() => setOpen(true)}>Add Employee</Button>
+        {canCreate && <Button variant="contained" onClick={() => setOpen(true)}>Add Employee</Button>}
       </Stack>
 
-      <Box
-        sx={{
-          height: 600,
-          bgcolor: "background.paper",
-          maxWidth: "100%",
-          "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" },
-          "& .MuiDataGrid-virtualScroller::-webkit-scrollbar": { height: 8 },
-          "& .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb": {
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            borderRadius: 4
-          }
-        }}
-      >
-        <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
-      </Box>
+      {loadError ? (
+        <Box sx={{ textAlign: "center", mt: 4 }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load employees.</Typography>
+          <Button variant="contained" onClick={loadEmployees}>Retry</Button>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            height: 600,
+            bgcolor: "background.paper",
+            maxWidth: "100%",
+            "& .MuiDataGrid-virtualScroller": { scrollbarWidth: "thin" },
+            "& .MuiDataGrid-virtualScroller::-webkit-scrollbar": { height: 8 },
+            "& .MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              borderRadius: 4
+            }
+          }}
+        >
+          <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
+        </Box>
+      )}
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle>Add Employee</DialogTitle>
@@ -167,7 +185,13 @@ export function EmployeesPage() {
             <TextField label="Department" value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} />
             <TextField label="Phone Number" value={form.phoneNumber} onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })} />
             <TextField label="Date of Joining" type="date" value={form.dateOfJoining} onChange={(e) => setForm({ ...form, dateOfJoining: e.target.value })} InputLabelProps={{ shrink: true }} />
-            <TextField label="Role" value="Employee" disabled helperText="Add Employee always creates the Employee role. Other roles are provisioned separately." />
+            <TextField
+              select label="Role" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}
+              helperText="Admin/SuperAdmin accounts are provisioned separately, from System Users."
+            >
+              <MenuItem value="Employee">Employee</MenuItem>
+              <MenuItem value="Supervisor">Supervisor</MenuItem>
+            </TextField>
           </Stack>
         </DialogContent>
         <DialogActions>

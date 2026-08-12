@@ -14,22 +14,29 @@ const severityColor: Record<string, "default" | "warning" | "error" | "info"> = 
 export function AlertsPage() {
   const [rows, setRows] = useState<SecurityAlertResponse[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [unacknowledgedOnly, setUnacknowledgedOnly] = useState(true);
 
   const loadAlerts = () => {
     setLoading(true);
+    setLoadError(false);
     apiClient.get<ApiResponse<PagedResult<SecurityAlertResponse>>>("/admin/alerts", {
       params: { pageSize: 100, unacknowledgedOnly }
     })
       .then((res) => setRows(res.data.data?.items ?? []))
+      .catch(() => setLoadError(true))
       .finally(() => setLoading(false));
   };
 
   useEffect(loadAlerts, [unacknowledgedOnly]);
 
   const acknowledge = async (id: string) => {
-    await apiClient.post(`/admin/alerts/${id}/acknowledge`);
-    loadAlerts();
+    try {
+      await apiClient.post(`/admin/alerts/${id}/acknowledge`);
+      loadAlerts();
+    } catch (err: any) {
+      window.alert(err?.response?.data?.message ?? "Failed to acknowledge alert.");
+    }
   };
 
   const columns: GridColDef<SecurityAlertResponse>[] = [
@@ -59,9 +66,16 @@ export function AlertsPage() {
         />
       </Stack>
 
-      <Box sx={{ height: 600, bgcolor: "background.paper" }}>
-        <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
-      </Box>
+      {loadError ? (
+        <Box sx={{ textAlign: "center", mt: 4 }}>
+          <Typography color="error" sx={{ mb: 2 }}>Failed to load alerts.</Typography>
+          <Button variant="contained" onClick={loadAlerts}>Retry</Button>
+        </Box>
+      ) : (
+        <Box sx={{ height: 600, bgcolor: "background.paper" }}>
+          <DataGrid rows={rows} columns={columns} loading={loading} getRowId={(r) => r.id} />
+        </Box>
+      )}
     </Box>
   );
 }
