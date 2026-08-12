@@ -81,13 +81,25 @@ public class DynamicFormService : IDynamicFormService
         // Replace field set wholesale on update; existing FormSubmissions keep their
         // historical field references via FormSubmissionFile.FormFieldId (nullable), so
         // no data loss on resubmission of the form definition.
+        //
+        // Removing and adding to the same tracked `form.Fields` collection within one
+        // SaveChanges batch confuses EF Core's snapshot change tracking: it was emitting
+        // UPDATE statements (not INSERTs) for the newly-added fields, which then hit the
+        // soft-delete SaveChanges override and threw DbUpdateConcurrencyException (0 rows
+        // matched an already-deleted/nonexistent row). Flushing the removal in its own
+        // SaveChanges call before adding the replacements avoids the ambiguity.
         foreach (var existing in form.Fields.ToList())
+        {
+            form.Fields.Remove(existing);
             _db.FormFields.Remove(existing);
+        }
+        await _db.SaveChangesAsync(ct);
 
         foreach (var f in request.Fields.OrderBy(f => f.DisplayOrder))
         {
-            form.Fields.Add(new FormField
+            _db.FormFields.Add(new FormField
             {
+                DynamicFormId = form.Id,
                 Label = f.Label,
                 FieldType = Enum.Parse<FormFieldType>(f.FieldType, true),
                 IsRequired = f.IsRequired,
