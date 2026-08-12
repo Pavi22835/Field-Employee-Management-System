@@ -13,8 +13,8 @@ public class CreateEmployeeRequestValidator : AbstractValidator<CreateEmployeeRe
         RuleFor(x => x.EmployeeCode).NotEmpty().MaximumLength(50);
         RuleFor(x => x.FirstName).NotEmpty().MaximumLength(100);
         RuleFor(x => x.LastName).NotEmpty().MaximumLength(100);
-        RuleFor(x => x.Role).NotEmpty().Equal("Employee")
-            .WithMessage("The Add Employee form can only create the Employee role.");
+        RuleFor(x => x.Role).NotEmpty().Must(r => r is "Employee" or "Supervisor")
+            .WithMessage("The Add Employee form can only create the Employee or Supervisor role.");
     }
 }
 
