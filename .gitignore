@@ -13,3 +13,6 @@ logs/
 **/appsettings.*.local.json
 **/appsettings.Production.json
 *.pfx
+
+# TypeScript build info
+*.tsbuildinfo
