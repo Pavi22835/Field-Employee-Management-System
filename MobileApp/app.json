@@ -9,6 +9,7 @@
     ],
     "android": {
       "package": "com.fems.fieldapp",
+      "usesCleartextTraffic": true,
       "permissions": [
         "CAMERA",
         "ACCESS_FINE_LOCATION",
